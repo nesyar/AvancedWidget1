@@ -2,12 +2,42 @@ package id.sch.smktelkom_mlg.learn.advancedwidget1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LinearLayout llMain = (LinearLayout) findViewById(R.id.LinearLayoutMain);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final EditText etNama = new EditText(this);
+        llMain.addView(etNama);
+        etNama.setText("Isikan Nama Anak");
+        final EditText etUmur = new EditText(this);
+        llMain.addView(etUmur);
+        etUmur.setText("Isikan Umur Anak");
+        etUmur.setInputType(InputType.TYPE_CLASS_NUMBER);
+        Button bproses = new Button(this);
+        bproses.setText("Proses");
+        llMain.addView(bproses);
+        final TextView tvHasil = new TextView(this);
+        llMain.addView(tvHasil);
+        bproses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nama = etNama.getText().toString();
+                String umur = etUmur.getText().toString();
+
+                tvHasil.setText(nama + " umur " + umur + " tahun");
+
+            }
+        });
     }
 }
